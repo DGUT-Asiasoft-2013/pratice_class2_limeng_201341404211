@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import com.example.helloworld.fragments.widgets.MainTabbarFragment;
 
 import fragment.pages.FeedListFragment;
+import fragment.pages.MyProfileFragment;
 
 /**
  * Created by Administrator on 2016/12/6.
@@ -16,6 +17,7 @@ import fragment.pages.FeedListFragment;
 
 public class HelloActivity extends Activity{
     FeedListFragment contentFeedList = new FeedListFragment();
+    MyProfileFragment contentMyProfile = new MyProfileFragment();
     MainTabbarFragment tabbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class HelloActivity extends Activity{
             case 0: newFrag = contentFeedList; break;
             //case 1: newFrag = contentNoteList; break;
             //case 2: newFrag = contentSearchPage; break;
-            //case 3: newFrag = contentMyProfile; break;
+            case 3: newFrag = contentMyProfile; break;
 
             default:break;
         }

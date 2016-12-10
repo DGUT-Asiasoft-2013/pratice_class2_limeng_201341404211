@@ -34,4 +34,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile files('libs/jackson-annotations-2.8.0.jar')
+    compile files('libs/okhttp-urlconnection-3.4.1.jar')
 }
