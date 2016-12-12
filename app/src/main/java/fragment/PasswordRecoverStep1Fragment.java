@@ -40,6 +40,10 @@ public class PasswordRecoverStep1Fragment extends Fragment {
         fragEmail.setLabelText("邮箱账号");
         fragEmail.setHintText("请输入邮箱账号");
     }
+    public String getText()
+    {
+        return fragEmail.getText();
+    }
 
     public static interface OnGoNextListener {
         void onGoNext();

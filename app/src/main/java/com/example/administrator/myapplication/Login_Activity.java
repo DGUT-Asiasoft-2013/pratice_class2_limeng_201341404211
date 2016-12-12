@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.api.Server;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -86,7 +87,7 @@ public class Login_Activity extends Activity {
         //用户密码加密
         password = MD5.getMD5(password);
         //创建okHttpClient对象
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = Server.getSharedClient();
         //创建一个Form数据组
         MultipartBody.Builder bodyBuilder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
@@ -96,7 +97,7 @@ public class Login_Activity extends Activity {
         MultipartBody postBody = bodyBuilder.build();
         //创建一个客户端请求：需要输入请求服务器的url,以及请求的方法
         Request request = new Request.Builder()
-                .url("Http://172.27.0.29:8080/membercenter/api/login")
+                .url("Http://172.27.0.36:8080/membercenter/api/login")
                 .method("post", null)
                 .post(postBody)
                 .build();

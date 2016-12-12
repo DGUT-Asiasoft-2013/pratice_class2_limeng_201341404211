@@ -127,7 +127,7 @@ public class RegisterActivity extends Activity{
 
         //创建一个客户端请求：需要输入请求服务器的url,以及请求的方法
         Request request=new Request.Builder()
-                .url("Http://172.27.0.29:8080/membercenter/api/register")
+                .url("Http://172.27.0.36:8080/membercenter/api/register")
                 .method("post",null)
                 .post(postBody)
                 .build();

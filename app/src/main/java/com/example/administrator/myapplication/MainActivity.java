@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.api.Server;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -52,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //新建一个请求
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = Server.getSharedClient();
         //请求数据的服务器的url：Http://172.27.0.29:8080/membercenter/api/hello,还有请求的方法：GET
         //然后用build创建
         Request request = new Request.Builder()
-                .url("Http://172.27.0.29:8080/membercenter/api/hello")
+                .url("Http://172.27.0.36:8080/membercenter/api/hello")
                 .method("GET", null)
                 .build();
         client.newCall(request).enqueue(new Callback() {

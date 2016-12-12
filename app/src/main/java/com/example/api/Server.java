@@ -29,7 +29,7 @@ public class Server {
     public  static Request.Builder requestBuilderWithApi(String api)
     {
         return new Request.Builder()
-                .url("Http://172.27.0.29:8080/membercenter/api/"+api);
+                .url("Http://172.27.0.36:8080/membercenter/api/"+api);
     }
 
 }

@@ -72,8 +72,8 @@ public class MyProfileFragment extends Fragment {
             public void onResponse(final Call call, Response response) throws IOException {
                 try
                 {
-                    String responseBody = response.body().string();
-                    final User user=new ObjectMapper().readValue(responseBody,User.class);
+
+                    final User user=new ObjectMapper().readValue(response.body().bytes(),User.class);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
