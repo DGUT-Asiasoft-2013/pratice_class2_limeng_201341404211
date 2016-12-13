@@ -178,11 +178,17 @@ public class Login_Activity extends Activity {
     }
 
     void onFailure(Call call, final Exception e) {
-        new AlertDialog.Builder(this)
-                .setTitle("登陆失败")
-                .setMessage(e.getLocalizedMessage())
-                .setNegativeButton("好", null)
-                .show();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(Login_Activity.this)
+                        .setTitle("登陆失败")
+                        .setMessage(e.getLocalizedMessage())
+                        .setNegativeButton("好", null)
+                        .show();
+            }
+        });
+
 
     }
 

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.administrator.myapplication.R;
 import com.example.administrator.myapplication.User;
 import com.example.api.Server;
+import com.example.helloworld.fragments.widgets.AvatarView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.EOFException;
@@ -31,6 +33,7 @@ public class MyProfileFragment extends Fragment {
     TextView textView;
     View progress;
     View view;
+    AvatarView avatar;
 
     @Nullable
     @Override
@@ -40,6 +43,7 @@ public class MyProfileFragment extends Fragment {
             //(TextView) view.findViewById(R.id.text1)中的（TextView）指的是强制转换
             textView=(TextView) view.findViewById(R.id.text1);
             progress = view.findViewById(R.id.progress);
+            avatar=(AvatarView)view.findViewById(R.id.avatar);
 
         }
         return view;
@@ -72,8 +76,9 @@ public class MyProfileFragment extends Fragment {
             public void onResponse(final Call call, Response response) throws IOException {
                 try
                 {
+                    final String responseString = response.body().string();
+                    final User user=new ObjectMapper().readValue(responseString,User.class);
 
-                    final User user=new ObjectMapper().readValue(response.body().bytes(),User.class);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -99,6 +104,7 @@ public class MyProfileFragment extends Fragment {
         progress.setVisibility(View.GONE);
         textView.setVisibility(View.VISIBLE);
         textView.setTextColor(Color.BLACK);
+        avatar.load(user);
         textView.setText(user.getName());
     }
     void onFailuer(Call call,Exception E)

@@ -26,10 +26,13 @@ public class Server {
     {
         return client;
     }
+    public static String serverAddress = "http://172.27.0.36:8080/membercenter/";
     public  static Request.Builder requestBuilderWithApi(String api)
     {
         return new Request.Builder()
-                .url("Http://172.27.0.36:8080/membercenter/api/"+api);
+//                .url("Http://172.27.0.36:8080/membercenter/api/"+api)
+                .url(serverAddress+"api/"+api);
     }
+
 
 }
