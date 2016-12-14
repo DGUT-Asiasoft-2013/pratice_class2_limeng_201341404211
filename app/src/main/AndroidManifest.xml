@@ -35,6 +35,7 @@
         </activity>
         <activity android:name=".NewContentActivity"></activity>
         <activity android:name=".FeedContentActivity"></activity>
+        <activity android:name=".AddRivew"></activity>
         <activity android:name=".PasswordRecoverActivity">
 
         </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for

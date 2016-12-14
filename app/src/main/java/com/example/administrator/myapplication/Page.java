@@ -8,15 +8,16 @@ import java.util.List;
  * Created by Administrator on 2016/12/13.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Page <Article>{
-    List<Article> content;
+//泛类
+public class Page <T>{
+    List<T> content;
     Integer number;
 
-    public List<Article> getContent() {
+    public List<T> getContent() {
         return content;
     }
 
-    public void setContent(List<Article> content) {
+    public void setContent(List<T> content) {
         this.content = content;
     }
 
