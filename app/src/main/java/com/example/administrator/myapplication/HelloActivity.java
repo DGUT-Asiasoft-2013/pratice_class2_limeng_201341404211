@@ -20,8 +20,8 @@ import fragment.pages.SearchFragment;
 public class HelloActivity extends Activity {
     FeedListFragment contentFeedList = new FeedListFragment();
     MyProfileFragment contentMyProfile = new MyProfileFragment();
-    SearchFragment contentSearchPage=new SearchFragment();
-    NotesFragment contentNoteList=new NotesFragment();
+    SearchFragment contentSearchPage = new SearchFragment();
+    NotesFragment contentNoteList = new NotesFragment();
 
     MainTabbarFragment tabbar;
 
@@ -53,8 +53,7 @@ public class HelloActivity extends Activity {
         }
 
 
-
-}
+    }
 
     void changeContentFragment(int index) {
         Fragment newFrag = null;
@@ -63,8 +62,12 @@ public class HelloActivity extends Activity {
             case 0:
                 newFrag = contentFeedList;
                 break;
-            case 1: newFrag = contentNoteList; break;
-            case 2: newFrag = contentSearchPage; break;
+            case 1:
+                newFrag = contentNoteList;
+                break;
+            case 2:
+                newFrag = contentSearchPage;
+                break;
             case 3:
                 newFrag = contentMyProfile;
                 break;

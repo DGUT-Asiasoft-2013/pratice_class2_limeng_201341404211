@@ -149,14 +149,17 @@ public class FeedListFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                if(getActivity()==null)return;
+
                 try {
 
-                    Page<Article> data=new ObjectMapper().readValue(response.body().string(),new TypeReference<Page<Article>>(){});
-                    FeedListFragment.this.page=data.getNumber();
-                    FeedListFragment.this.data=data.getContent();
+                    final Page<Article> data=new ObjectMapper().readValue(response.body().string(),new TypeReference<Page<Article>>(){});
+
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            FeedListFragment.this.page=data.getNumber();
+                            FeedListFragment.this.data=data.getContent();
                             listAdapter.notifyDataSetChanged();
                         }
                     });
@@ -188,6 +191,8 @@ public class FeedListFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                if (getActivity()==null) return;
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

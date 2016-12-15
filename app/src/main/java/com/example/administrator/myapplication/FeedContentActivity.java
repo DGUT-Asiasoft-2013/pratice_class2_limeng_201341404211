@@ -51,13 +51,13 @@ public class FeedContentActivity extends Activity {
         btnLikes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goAddRiew();
+                goLike();
             }
         });
-        findViewById(R.id.add_review_like).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.add_review).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goLike();
+                goAddRiew();
             }
         });
 
@@ -76,8 +76,6 @@ public class FeedContentActivity extends Activity {
         OkHttpClient client = Server.getSharedClient();
         MultipartBody body = new MultipartBody.Builder()
                 .addFormDataPart("likes", String.valueOf(!isLike))
-                // .addFormDataPart("article_id", String.valueOf(article.getId()))
-                //
                 .build();
         Request request = Server.requestBuilderWithApi("article/" + article.getId() + "/likes")
                 .post(body)
