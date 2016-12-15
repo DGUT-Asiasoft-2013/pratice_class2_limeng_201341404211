@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -46,7 +47,7 @@ public class FeedContentActivity extends Activity {
 
         TextView textView = (TextView) findViewById(R.id.tv_content);
         textView.setText(article.getText().toString());
-        btnLikes = (Button) findViewById(R.id.add_review);
+        btnLikes = (Button) findViewById(R.id.add_review_like);
         btnLikes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,8 +77,9 @@ public class FeedContentActivity extends Activity {
         MultipartBody body = new MultipartBody.Builder()
                 .addFormDataPart("likes", String.valueOf(!isLike))
                 // .addFormDataPart("article_id", String.valueOf(article.getId()))
+                //
                 .build();
-        Request request = Server.requestBuilderWithApi("article/" + article.getId() + "/likes/")
+        Request request = Server.requestBuilderWithApi("article/" + article.getId() + "/likes")
                 .post(body)
                 .build();
         client.newCall(request).enqueue(new Callback() {
@@ -93,7 +95,13 @@ public class FeedContentActivity extends Activity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseBody = response.body().string();
+                try{
+                    final String responseBody = response.body().string();
+                    Log.d("responseBody",responseBody);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -173,10 +181,11 @@ public class FeedContentActivity extends Activity {
     void reload() {
         reloadLikes();
         checkLiked();
+
     }
     void checkLiked()
     {
-        Request request=Server.requestBuilderWithApi("articlr/"+article.getId()+"/isliked").get().build();
+        Request request=Server.requestBuilderWithApi("article/"+article.getId()+"/isliked").get().build();
         Server.getSharedClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
